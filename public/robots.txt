@@ -1,0 +1,25 @@
+# robots.txt para RS Autoelevadores
+
+# Permitir a todos los crawlers
+User-agent: *
+Allow: /
+
+# Bloquear directorios privados (si existen)
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap
+Sitemap: https://rsautoelevadores.com/sitemap.xml
+
+# Crawl-delay para reducir carga del servidor
+Crawl-delay: 1
+
+# Googlebot específico
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bingbot específico
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
