@@ -111,10 +111,7 @@ const BrandsSection = () => {
           <Box
             sx={{
               display: 'flex',
-              animation: `${scroll} 35s linear infinite`,
-              '&:hover': {
-                animationPlayState: 'paused',
-              },
+              animation: `${scroll} 5s linear infinite`,
             }}
           >
             {duplicatedBrands.map((brand, index) => (

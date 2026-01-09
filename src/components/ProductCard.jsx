@@ -13,7 +13,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 const ProductCard = ({ product }) => {
   const handleWhatsApp = () => {
     const message = `Hola, estoy interesado en ${product.name}. ¿Podrían darme más información?`;
-    const phoneNumber = '5491112345678'; // Reemplazar con el número real
+    const phoneNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5491112345678';
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
   };
@@ -25,6 +25,10 @@ const ProductCard = ({ product }) => {
         display: 'flex',
         flexDirection: 'column',
         transition: 'all 0.3s ease',
+        '&:hover': {
+          transform: 'translateY(-4px)',
+          boxShadow: 6,
+        },
       }}
     >
       <CardMedia
@@ -43,8 +47,12 @@ const ProductCard = ({ product }) => {
           <Chip
             label={product.category}
             size="small"
-            sx={{ mb: 1 }}
-            color="primary"
+            sx={{ 
+              mb: 1,
+              backgroundColor: 'primary.main',
+              color: 'white',
+              fontWeight: 600,
+            }}
           />
         )}
         
@@ -70,15 +78,21 @@ const ProductCard = ({ product }) => {
         <Button
           fullWidth
           variant="contained"
-          color="secondary"
           startIcon={<WhatsAppIcon />}
           onClick={handleWhatsApp}
           sx={{
             fontWeight: 600,
-            color: '#000',
+            backgroundColor: '#25D366', // Verde oficial de WhatsApp
+            color: 'white',
+            py: 1.2,
+            fontSize: '1rem',
+            boxShadow: '0 4px 12px rgba(37, 211, 102, 0.3)',
             '&:hover': {
-              backgroundColor: '#f9a825',
+              backgroundColor: '#1fb855',
+              boxShadow: '0 6px 16px rgba(37, 211, 102, 0.4)',
+              transform: 'translateY(-2px)',
             },
+            transition: 'all 0.3s ease',
           }}
         >
           Consultar
