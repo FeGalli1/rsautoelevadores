@@ -1,113 +1,48 @@
-import { Container, Typography, Box } from '@mui/material';
+import { Box, Container, Title, Text, SimpleGrid, Stack } from '@mantine/core';
+import { IconTruck, IconTool, IconPackage } from '@tabler/icons-react';
 import ServiceCard from './ServiceCard';
-import BuildIcon from '@mui/icons-material/Build';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import InventoryIcon from '@mui/icons-material/Inventory';
 
-const AboutSection = () => {
-  const services = [
-    {
-      icon: <LocalShippingIcon sx={{ fontSize: { xs: 48, md: 56 }, color: 'primary.main' }} />,
-      title: 'Alquiler de Autoelevadores',
-      description: 'Equipos de última generación para potenciar tu operación. Flexibilidad total en plazos y modelos.',
-    },
-    {
-      icon: <BuildIcon sx={{ fontSize: { xs: 48, md: 56 }, color: 'primary.main' }} />,
-      title: 'Mantenimiento Profesional',
-      description: 'Técnicos certificados y repuestos originales. Minimizá tiempos de inactividad.',
-    },
-    {
-      icon: <InventoryIcon sx={{ fontSize: { xs: 48, md: 56 }, color: 'primary.main' }} />,
-      title: 'Venta de Repuestos',
-      description: 'Stock permanente de piezas originales. Entrega inmediata para todas las marcas.',
-    },
-  ];
+const services = [
+  {
+    icon: <IconTruck size={36} />,
+    title: 'Alquiler de Autoelevadores',
+    description: 'Equipos de última generación para potenciar tu operación. Flexibilidad total en plazos y modelos.',
+  },
+  {
+    icon: <IconTool size={36} />,
+    title: 'Mantenimiento Profesional',
+    description: 'Técnicos certificados y repuestos originales. Minimizá tiempos de inactividad.',
+  },
+  {
+    icon: <IconPackage size={36} />,
+    title: 'Venta de Repuestos',
+    description: 'Stock permanente de piezas originales. Entrega inmediata para todas las marcas.',
+  },
+];
 
-  return (
-    <Box 
-      component="section" 
-      sx={{ 
-        py: { xs: 6, md: 10 }, 
-        backgroundColor: 'grey.50',
-        position: 'relative',
-      }}
-    >
-      <Container maxWidth="lg">
-        {/* Encabezado de sección */}
-        <Box sx={{ textAlign: 'center', mb: { xs: 5, md: 7 } }}>
-          <Typography
-            variant="overline"
-            sx={{ 
-              fontSize: '0.9rem',
-              fontWeight: 700,
-              letterSpacing: '2px',
-              color: 'primary.main',
-              mb: 1,
-              display: 'block',
-            }}
-          >
-            NUESTROS SERVICIOS
-          </Typography>
-          <Typography
-            variant="h2"
-            component="h2"
-            sx={{ 
-              fontWeight: 800, 
-              mb: 2,
-              fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-              color: 'text.primary',
-            }}
-          >
-            Soluciones Integrales
-          </Typography>
-          <Typography
-            variant="body1"
-            color="text.secondary"
-            sx={{ 
-              maxWidth: '700px', 
-              mx: 'auto', 
-              fontSize: { xs: '1rem', md: '1.1rem' },
-              lineHeight: 1.7,
-              px: { xs: 2, sm: 0 },
-            }}
-          >
-            Más de 20 años de experiencia respaldándonos como líderes en equipamiento industrial.
-            Tu partner de confianza para cada desafío logístico.
-          </Typography>
-        </Box>
+const AboutSection = () => (
+  <Box component="section" bg="gray.0" py={{ base: 60, md: 96 }}>
+    <Container size="lg">
+      <Stack align="center" ta="center" gap="xs" mb={{ base: 48, md: 64 }}>
+        <Text size="sm" fw={700} c="brand" style={{ letterSpacing: '2px', textTransform: 'uppercase' }}>
+          NUESTROS SERVICIOS
+        </Text>
+        <Title order={2} fz={{ base: '1.8rem', sm: '2.2rem', md: '2.75rem' }}>
+          Soluciones Integrales
+        </Title>
+        <Text c="dimmed" size="lg" maw={680} lh={1.7}>
+          Más de 15 años de experiencia respaldándonos como líderes en equipamiento industrial.
+          Tu partner de confianza para cada desafío logístico.
+        </Text>
+      </Stack>
 
-        {/* Contenedor Flexbox de servicios */}
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            gap: { xs: 2.5, md: 3, lg: 4 },
-            alignItems: 'stretch',
-            justifyContent: 'center',
-            maxWidth: '100%',
-          }}
-        >
-          {services.map((service, index) => (
-            <Box
-              key={index}
-              sx={{
-                flex: { xs: '0 0 auto', md: '1 1 0' },
-                minWidth: 0,
-                width: { xs: '100%', md: 'auto' },
-                maxWidth: { md: '400px' },
-              }}
-            >
-              <ServiceCard
-                icon={service.icon}
-                title={service.title}
-                description={service.description}
-              />
-            </Box>
-          ))}
-        </Box>
-      </Container>
-    </Box>
-  );
-};
+      <SimpleGrid cols={{ base: 1, md: 3 }} spacing={{ base: 20, md: 32 }}>
+        {services.map((s, i) => (
+          <ServiceCard key={i} {...s} />
+        ))}
+      </SimpleGrid>
+    </Container>
+  </Box>
+);
 
 export default AboutSection;

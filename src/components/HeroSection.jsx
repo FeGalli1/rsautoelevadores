@@ -1,156 +1,116 @@
-import { Box, Container, Typography, Button } from '@mui/material';
+import { Box, Container, Title, Text, Button, Group } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { IconArrowRight, IconBrandWhatsapp } from '@tabler/icons-react';
 
-const HeroSection = () => {
-  return (
+const HeroSection = () => (
+  <Box
+    component="section"
+    style={{
+      position: 'relative',
+      backgroundImage: 'url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&h=1080&fit=crop&q=80)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      color: 'white',
+      minHeight: '80vh',
+      display: 'flex',
+      alignItems: 'center',
+    }}
+  >
+    {/* Overlay */}
     <Box
-      component="section"
-      sx={{
-        position: 'relative',
-        backgroundImage: 'url(https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1920&h=1080&fit=crop&q=80)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: { xs: 'scroll', md: 'fixed' },
-        color: 'white',
-        py: { xs: 12, md: 18 },
-        minHeight: { xs: '70vh', md: '80vh' },
-        display: 'flex',
-        alignItems: 'center',
-        '&::before': {
-          content: '""',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'linear-gradient(135deg, rgba(160, 21, 62, 0.85) 0%, rgba(43, 43, 43, 0.75) 100%)',
-          zIndex: 1,
-        },
+      style={{
+        position: 'absolute',
+        inset: 0,
+        background: 'linear-gradient(135deg, rgba(160,21,62,0.88) 0%, rgba(43,43,43,0.78) 100%)',
       }}
-    >
-      <Container 
-        maxWidth="lg" 
-        sx={{ 
-          position: 'relative', 
-          zIndex: 2,
-          textAlign: { xs: 'center', md: 'left' },
+    />
+
+    <Container size="lg" style={{ position: 'relative', zIndex: 1, paddingTop: 80, paddingBottom: 80 }}>
+      <Text
+        size="sm"
+        fw={700}
+        style={{ letterSpacing: '3px', color: 'rgba(255,255,255,0.9)', marginBottom: 16, display: 'block', textTransform: 'uppercase' }}
+      >
+        TU SOCIO ESTRATÉGICO EN EQUIPAMIENTO INDUSTRIAL
+      </Text>
+
+      <Title
+        order={1}
+        style={{
+          fontWeight: 900,
+          fontSize: 'clamp(2rem, 5vw, 4.5rem)',
+          lineHeight: 1.1,
+          marginBottom: 24,
+          maxWidth: 850,
+          textShadow: '0 4px 12px rgba(0,0,0,0.3)',
         }}
       >
-        {/* Supratítulo */}
-        <Typography
-          variant="overline"
-          sx={{
-            display: 'block',
-            fontSize: { xs: '0.85rem', md: '1rem' },
-            fontWeight: 700,
-            letterSpacing: '3px',
-            mb: 2,
-            color: 'rgba(255, 255, 255, 0.9)',
-          }}
-        >
-          LÍDERES EN EQUIPAMIENTO INDUSTRIAL
-        </Typography>
-
-        {/* Título principal */}
-        <Typography
-          variant="h1"
-          component="h1"
-          sx={{
-            fontWeight: 800,
-            fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
-            lineHeight: 1.1,
-            mb: 3,
-            maxWidth: { md: '800px' },
-            textShadow: '0 4px 12px rgba(0,0,0,0.3)',
-          }}
-        >
-          Potenciá tu negocio con{' '}
-          <Box component="span" sx={{ color: '#FDD835' }}>
-            equipos de primera
-          </Box>
-        </Typography>
-
-        {/* Subtítulo */}
-        <Typography
-          variant="h5"
-          sx={{
-            mb: 5,
-            fontSize: { xs: '1.1rem', sm: '1.3rem', md: '1.5rem' },
-            fontWeight: 400,
-            lineHeight: 1.6,
-            maxWidth: { md: '650px' },
-            color: 'rgba(255, 255, 255, 0.95)',
-          }}
-        >
-          Alquiler, mantenimiento y venta de autoelevadores. 
-          Soluciones a medida para tu industria.
-        </Typography>
-
-        {/* CTAs */}
-        <Box 
-          sx={{ 
-            display: 'flex', 
-            gap: 2.5, 
-            justifyContent: { xs: 'center', md: 'flex-start' },
-            flexWrap: 'wrap',
-          }}
-        >
-          <Button
-            component={Link}
-            to="/catalog"
-            variant="contained"
-            size="large"
-            endIcon={<ArrowForwardIcon />}
-            sx={{
-              px: 4,
-              py: 1.8,
-              fontSize: '1.1rem',
-              fontWeight: 700,
-              borderRadius: 3,
-              background: 'white',
-              color: '#A0153E',
-              boxShadow: '0 6px 24px rgba(0,0,0,0.2)',
-              '&:hover': {
-                background: '#f5f5f5',
-                transform: 'translateY(-3px)',
-                boxShadow: '0 8px 30px rgba(0,0,0,0.25)',
-              },
-            }}
-          >
-            Ver Catálogo
-          </Button>
-
-          <Button
-            component={Link}
-            to="/contact"
-            variant="outlined"
-            size="large"
-            startIcon={<WhatsAppIcon />}
-            sx={{
-              px: 4,
-              py: 1.8,
-              fontSize: '1.1rem',
-              fontWeight: 700,
-              borderRadius: 3,
-              borderWidth: 2,
-              borderColor: 'white',
-              color: 'white',
-              '&:hover': {
-                borderWidth: 2,
-                borderColor: '#FDD835',
-                backgroundColor: 'rgba(253, 216, 53, 0.1)',
-                transform: 'translateY(-3px)',
-              },
-            }}
-          >
-            Solicitar Cotización
-          </Button>
+        Soluciones integrales para que su{' '}
+        <Box component="span" style={{ color: '#FDD835' }}>
+          operación nunca se detenga
         </Box>
-      </Container>
-    </Box>
-  );
-};
+      </Title>
+
+      <Text
+        style={{
+          marginBottom: 48,
+          fontSize: 'clamp(1rem, 2vw, 1.35rem)',
+          fontWeight: 400,
+          lineHeight: 1.7,
+          maxWidth: 680,
+          color: 'rgba(255,255,255,0.95)',
+        }}
+      >
+        Especialistas en alquiler, mantenimiento y venta de repuestos para autoelevadores.
+        Más de 15 años brindando confianza y respaldo técnico a la industria nacional.
+      </Text>
+
+      <Group gap="md" wrap="wrap">
+        <Button
+          component={Link}
+          to="/catalog"
+          size="lg"
+          rightSection={<IconArrowRight size={18} />}
+          style={{
+            backgroundColor: 'white',
+            color: '#A0153E',
+            fontWeight: 700,
+            boxShadow: '0 6px 24px rgba(0,0,0,0.2)',
+          }}
+          onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-3px)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; }}
+        >
+          Nuestros Servicios
+        </Button>
+
+        <Button
+          component={Link}
+          to="/contact"
+          size="lg"
+          variant="outline"
+          leftSection={<IconBrandWhatsapp size={18} />}
+          style={{
+            borderColor: 'white',
+            borderWidth: 2,
+            color: 'white',
+            fontWeight: 700,
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = '#FDD835';
+            e.currentTarget.style.backgroundColor = 'rgba(253,216,53,0.1)';
+            e.currentTarget.style.transform = 'translateY(-3px)';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'white';
+            e.currentTarget.style.backgroundColor = 'transparent';
+            e.currentTarget.style.transform = 'translateY(0)';
+          }}
+        >
+          Solicitar Presupuesto
+        </Button>
+      </Group>
+    </Container>
+  </Box>
+);
 
 export default HeroSection;

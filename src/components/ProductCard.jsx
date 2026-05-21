@@ -1,104 +1,160 @@
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  Typography,
-  Button,
-  Box,
-  Chip,
-} from '@mui/material';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { useState } from 'react';
+import { Card, Badge, Title, Text, Button, Stack, Box, Group, Modal } from '@mantine/core';
+import { IconBrandWhatsapp, IconFileText } from '@tabler/icons-react';
 
 const ProductCard = ({ product }) => {
-  const handleWhatsApp = () => {
-    const message = `Hola, estoy interesado en ${product.name}. ¿Podrían darme más información?`;
-    const phoneNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '5491112345678';
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
+  const [opened, setOpened] = useState(false);
+
+  const consultarWhatsApp = (e) => {
+    e?.stopPropagation();
+    const codePart = product.codigo ? ` (código: ${product.codigo})` : '';
+    const msg = `Hola! Estoy interesado en el repuesto: ${product.name}${codePart}. ¿Me pueden dar más información?`;
+    const num = import.meta.env.VITE_WHATSAPP_NUMBER || '5491112345678';
+    window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
   return (
-    <Card
-      sx={{
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        transition: 'all 0.3s ease',
-        '&:hover': {
-          transform: 'translateY(-4px)',
-          boxShadow: 6,
-        },
-      }}
-    >
-      <CardMedia
-        component="img"
-        height="220"
-        image={product.image}
-        alt={product.name}
-        sx={{ objectFit: 'cover' }}
-      />
-      <CardContent sx={{ flexGrow: 1 }}>
-        <Typography gutterBottom variant="h5" component="h2" sx={{ fontWeight: 600 }}>
-          {product.name}
-        </Typography>
-        
-        {product.category && (
-          <Chip
-            label={product.category}
-            size="small"
-            sx={{ 
-              mb: 1,
-              backgroundColor: 'primary.main',
-              color: 'white',
-              fontWeight: 600,
-            }}
-          />
-        )}
-        
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          {product.description}
-        </Typography>
-
-        {product.specs && (
-          <Box sx={{ mt: 2 }}>
-            <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>
-              Especificaciones:
-            </Typography>
-            {product.specs.map((spec, index) => (
-              <Typography key={index} variant="body2" color="text.secondary" sx={{ fontSize: '0.85rem' }}>
-                • {spec}
-              </Typography>
-            ))}
-          </Box>
-        )}
-      </CardContent>
-      
-      <CardActions sx={{ p: 2, pt: 0 }}>
-        <Button
-          fullWidth
-          variant="contained"
-          startIcon={<WhatsAppIcon />}
-          onClick={handleWhatsApp}
-          sx={{
-            fontWeight: 600,
-            backgroundColor: '#25D366', // Verde oficial de WhatsApp
-            color: 'white',
-            py: 1.2,
-            fontSize: '1rem',
-            boxShadow: '0 4px 12px rgba(37, 211, 102, 0.3)',
-            '&:hover': {
-              backgroundColor: '#1fb855',
-              boxShadow: '0 6px 16px rgba(37, 211, 102, 0.4)',
-              transform: 'translateY(-2px)',
-            },
-            transition: 'all 0.3s ease',
+    <>
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        title={
+          <Text fw={700} fz="0.95rem" style={{ textTransform: 'uppercase', lineHeight: 1.4, paddingRight: 8 }}>
+            {product.name}
+          </Text>
+        }
+        size="lg"
+        radius="lg"
+        padding="lg"
+      >
+        <Box
+          mb="md"
+          style={{
+            borderRadius: 8,
+            overflow: 'hidden',
+            backgroundColor: '#f5f5f5',
+            height: 260,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
-          Consultar
+          <img
+            src={product.image}
+            alt={product.name}
+            style={{ maxWidth: '100%', maxHeight: 260, objectFit: 'contain', display: 'block' }}
+            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+          />
+        </Box>
+
+        <Group gap="xs" mb="md">
+          <Badge color="brand" radius="sm">{product.category}</Badge>
+          {product.codigo && (
+            <Badge color="gray" variant="outline" radius="sm" style={{ fontFamily: 'monospace' }}>
+              {product.codigo}
+            </Badge>
+          )}
+        </Group>
+
+        <Box style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+          <Text size="sm" lh={1.8} style={{ whiteSpace: 'pre-wrap' }} c="dimmed">
+            {product.fichaTecnica}
+          </Text>
+        </Box>
+
+        <Button
+          fullWidth
+          leftSection={<IconBrandWhatsapp size={18} />}
+          mt="xl"
+          size="md"
+          radius="md"
+          onClick={consultarWhatsApp}
+          style={{ backgroundColor: '#25D366', color: 'white' }}
+        >
+          Consultar por WhatsApp
         </Button>
-      </CardActions>
-    </Card>
+      </Modal>
+
+      <Card
+        radius="xl"
+        withBorder
+        className="card-lift"
+        onClick={() => setOpened(true)}
+        style={{
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          border: '1px solid #e8e8e8',
+          cursor: 'pointer',
+        }}
+      >
+        <Card.Section>
+          <Box
+            style={{
+              height: 200,
+              overflow: 'hidden',
+              backgroundColor: '#ffffff',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 8,
+            }}
+          >
+            <img
+              src={product.image}
+              alt={product.name}
+              style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', display: 'block' }}
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            />
+          </Box>
+        </Card.Section>
+
+        <Stack gap={6} pt="sm" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+          <Group gap={6} align="center">
+            <Badge color="brand" radius="sm" size="xs">{product.category}</Badge>
+            {product.codigo && (
+              <Text size="xs" c="dimmed" style={{ fontFamily: 'monospace' }}>
+                {product.codigo}
+              </Text>
+            )}
+          </Group>
+
+          <Title
+            order={6}
+            fw={600}
+            fz="0.82rem"
+            lineClamp={2}
+            style={{ textTransform: 'uppercase', letterSpacing: '0.3px', lineHeight: 1.45 }}
+          >
+            {product.name}
+          </Title>
+
+          <Stack gap={5} mt="auto" pt="xs">
+            <Button
+              variant="light"
+              color="brand"
+              size="xs"
+              leftSection={<IconFileText size={13} />}
+              radius="md"
+              fullWidth
+              onClick={(e) => { e.stopPropagation(); setOpened(true); }}
+            >
+              Ver ficha técnica
+            </Button>
+            <Button
+              fullWidth
+              leftSection={<IconBrandWhatsapp size={15} />}
+              size="xs"
+              radius="md"
+              onClick={consultarWhatsApp}
+              style={{ backgroundColor: '#25D366', color: 'white' }}
+            >
+              Consultar
+            </Button>
+          </Stack>
+        </Stack>
+      </Card>
+    </>
   );
 };
 

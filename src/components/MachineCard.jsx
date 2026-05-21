@@ -1,167 +1,73 @@
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography,
-  Box,
-  Chip,
-  Button,
-} from '@mui/material';
 import { useState } from 'react';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Card, Badge, Title, Text, Button, Box, Stack } from '@mantine/core';
+import { IconArrowRight } from '@tabler/icons-react';
 import MachineDetailModal from './MachineDetailModal';
 
 const MachineCard = ({ machine }) => {
-  const [openModal, setOpenModal] = useState(false);
-
-  const handleOpenModal = () => {
-    setOpenModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
+  const [opened, setOpened] = useState(false);
 
   return (
     <>
       <Card
-        sx={{
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-          borderRadius: 4,
-          overflow: 'hidden',
-          border: '1px solid rgba(0,0,0,0.06)',
-          '&:hover': {
-            '& .machine-image': {
-              transform: 'scale(1.08)',
-            },
-            '& .view-details-btn': {
-              backgroundColor: 'primary.main',
-              color: 'white',
-            },
-          },
-        }}
+        radius="xl"
+        withBorder
+        className="machine-card card-lift"
+        style={{ height: '100%', display: 'flex', flexDirection: 'column', border: '1px solid #e8e8e8' }}
       >
-        <Box sx={{ overflow: 'hidden', position: 'relative', height: 240 }}>
-          <CardMedia
-            component="img"
-            height="240"
-            image={machine.image}
+        <Card.Section style={{ position: 'relative', height: 240, overflow: 'hidden' }}>
+          <img
+            src={machine.image}
             alt={machine.name}
-            className="machine-image"
-            sx={{ 
-              objectFit: 'cover',
-              transition: 'transform 0.5s ease',
-            }}
+            className="machine-img"
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />
           {machine.brand && (
-            <Chip
-              label={machine.brand}
-              size="small"
-              sx={{ 
+            <Badge
+              style={{
                 position: 'absolute',
                 top: 12,
                 left: 12,
-                fontWeight: 600,
                 backgroundColor: 'white',
+                color: '#2B2B2B',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
               }}
-            />
+              radius="sm"
+            >
+              {machine.brand}
+            </Badge>
           )}
-        </Box>
-        
-        <CardContent sx={{ flexGrow: 1, p: 2.5, display: 'flex', flexDirection: 'column' }}>
-          <Typography 
-            gutterBottom 
-            variant="h6" 
-            component="h3" 
-            sx={{ 
-              fontWeight: 700,
-              fontSize: '1.15rem',
-              mb: 1.5,
-              color: 'text.primary',
-            }}
-          >
-            {machine.name}
-          </Typography>
-          
-          <Typography 
-            variant="body2" 
-            color="text.secondary" 
-            sx={{ 
-              mb: 2,
-              lineHeight: 1.6,
-              flexGrow: 1,
-            }}
-          >
-            {machine.description}
-          </Typography>
+        </Card.Section>
 
-          {machine.features && machine.features.length > 0 && (
-            <Box sx={{ mb: 2 }}>
-              {machine.features.slice(0, 3).map((feature, index) => (
-                <Typography 
-                  key={index} 
-                  variant="body2" 
-                  color="text.secondary" 
-                  sx={{ 
-                    fontSize: '0.85rem',
-                    mb: 0.5,
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1,
-                  }}
-                >
-                  <Box 
-                    component="span" 
-                    sx={{ 
-                      width: 4, 
-                      height: 4, 
-                      borderRadius: '50%', 
-                      backgroundColor: 'primary.main',
-                      flexShrink: 0,
-                    }} 
-                  />
-                  {feature}
-                </Typography>
-              ))}
+        <Stack gap="xs" p="md" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+          <Title order={4} fw={700} fz="1.1rem">
+            {machine.name}
+          </Title>
+          <Text size="sm" c="dimmed" lh={1.65} style={{ flexGrow: 1 }}>
+            {machine.description}
+          </Text>
+
+          {machine.features?.slice(0, 3).map((f, i) => (
+            <Box key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Box style={{ width: 4, height: 4, borderRadius: '50%', backgroundColor: '#A0153E', flexShrink: 0 }} />
+              <Text size="xs" c="dimmed">{f}</Text>
             </Box>
-          )}
+          ))}
 
           <Button
-            variant="outlined"
-            size="small"
-            endIcon={<ArrowForwardIcon />}
-            onClick={handleOpenModal}
-            className="view-details-btn"
-            sx={{
-              mt: 'auto',
-              alignSelf: 'flex-start',
-              borderRadius: 2,
-              px: 2.5,
-              py: 0.8,
-              fontSize: '0.85rem',
-              fontWeight: 600,
-              borderWidth: 1.5,
-              transition: 'all 0.3s ease',
-              '&:hover': {
-                borderWidth: 1.5,
-              },
-            }}
+            variant="outline"
+            color="brand"
+            size="sm"
+            rightSection={<IconArrowRight size={14} />}
+            onClick={() => setOpened(true)}
+            mt="sm"
+            style={{ alignSelf: 'flex-start' }}
           >
             Ver detalles
           </Button>
-        </CardContent>
+        </Stack>
       </Card>
 
-      {/* Modal de detalles */}
-      <MachineDetailModal
-        open={openModal}
-        onClose={handleCloseModal}
-        machine={machine}
-      />
+      <MachineDetailModal opened={opened} onClose={() => setOpened(false)} machine={machine} />
     </>
   );
 };

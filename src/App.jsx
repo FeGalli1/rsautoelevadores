@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { Box } from '@mui/material';
+import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import theme from './theme';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -15,12 +14,12 @@ import Contact from './pages/Contact';
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <MantineProvider theme={theme}>
+      <Notifications position="bottom-center" />
       <Router>
-        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           <Header />
-          <Box component="main" sx={{ flexGrow: 1 }}>
+          <main style={{ flexGrow: 1 }}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/machines" element={<Machines />} />
@@ -29,12 +28,12 @@ function App() {
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
-          </Box>
+          </main>
           <Footer />
           <WhatsAppButton />
-        </Box>
+        </div>
       </Router>
-    </ThemeProvider>
+    </MantineProvider>
   );
 }
 

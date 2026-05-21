@@ -1,134 +1,103 @@
+import { Box, Container, SimpleGrid, Text, Title, Stack, Group, Anchor, Divider, ActionIcon } from '@mantine/core';
 import {
-  Box,
-  Container,
-  Grid,
-  Typography,
-  IconButton,
-  Divider,
-} from '@mui/material';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import EmailIcon from '@mui/icons-material/Email';
-import PhoneIcon from '@mui/icons-material/Phone';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+  IconBrandFacebook,
+  IconBrandInstagram,
+  IconBrandLinkedin,
+  IconBrandWhatsapp,
+  IconMail,
+  IconPhone,
+  IconMapPin,
+} from '@tabler/icons-react';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
+
+  const socials = [
+    { icon: <IconBrandFacebook size={20} />, href: 'https://facebook.com', label: 'Facebook' },
+    { icon: <IconBrandInstagram size={20} />, href: 'https://instagram.com', label: 'Instagram' },
+    { icon: <IconBrandLinkedin size={20} />, href: 'https://linkedin.com', label: 'LinkedIn' },
+    { icon: <IconBrandWhatsapp size={20} />, href: import.meta.env.VITE_WHATSAPP_URL || 'https://wa.me/5491112345678', label: 'WhatsApp' },
+  ];
 
   return (
-    <Box
-      component="footer"
-      sx={{
-        backgroundColor: '#1a1a1a',
-        color: 'white',
-        pt: 6,
-        pb: 3,
-        mt: 8,
-      }}
-    >
-      <Container maxWidth="lg">
-        <Grid container spacing={4}>
-          {/* Sección Izquierda - Empresa y Redes Sociales */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 700, color: '#fdd835' }}>
+    <Box component="footer" style={{ backgroundColor: '#1a1a1a', color: 'white' }} pt={48} pb={24} mt={64}>
+      <Container size="lg">
+        <SimpleGrid cols={{ base: 1, md: 2 }} spacing={40}>
+          {/* Empresa */}
+          <Stack gap="md">
+            <Title order={4} style={{ color: '#fdd835', fontWeight: 700 }}>
               {import.meta.env.VITE_COMPANY_NAME || 'RS Autoelevadores'}
-            </Typography>
-            <Typography variant="body2" sx={{ mb: 3, color: '#b0b0b0', lineHeight: 1.8 }}>
-              Líderes en alquiler de autoelevadores, mantenimiento de equipos y venta de piezas. 
+            </Title>
+            <Text size="sm" style={{ color: '#b0b0b0', lineHeight: 1.8 }}>
+              Líderes en alquiler de autoelevadores, mantenimiento de equipos y venta de piezas.
               Brindamos soluciones integrales para tu empresa.
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 1 }}>
-              <IconButton
-                aria-label="Facebook"
-                sx={{ color: '#fdd835', '&:hover': { color: '#ffeb3b' } }}
-                href="https://facebook.com"
-                target="_blank"
-              >
-                <FacebookIcon />
-              </IconButton>
-              <IconButton
-                aria-label="Instagram"
-                sx={{ color: '#fdd835', '&:hover': { color: '#ffeb3b' } }}
-                href="https://instagram.com"
-                target="_blank"
-              >
-                <InstagramIcon />
-              </IconButton>
-              <IconButton
-                aria-label="LinkedIn"
-                sx={{ color: '#fdd835', '&:hover': { color: '#ffeb3b' } }}
-                href="https://linkedin.com"
-                target="_blank"
-              >
-                <LinkedInIcon />
-              </IconButton>
-              <IconButton
-                aria-label="WhatsApp"
-                sx={{ color: '#fdd835', '&:hover': { color: '#ffeb3b' } }}
-                href={import.meta.env.VITE_WHATSAPP_URL || 'https://wa.me/5491112345678'}
-                target="_blank"
-              >
-                <WhatsAppIcon />
-              </IconButton>
-            </Box>
-          </Grid>
+            </Text>
+            <Group gap="xs">
+              {socials.map(({ icon, href, label }) => (
+                <ActionIcon
+                  key={label}
+                  component="a"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  variant="transparent"
+                  size="lg"
+                  style={{ color: '#fdd835' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#ffeb3b'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#fdd835'; }}
+                >
+                  {icon}
+                </ActionIcon>
+              ))}
+            </Group>
+          </Stack>
 
-          {/* Sección Derecha - Contacto */}
-          <Grid item xs={12} md={6}>
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 700, color: '#fdd835' }}>
+          {/* Contacto */}
+          <Stack gap="md">
+            <Title order={4} style={{ color: '#fdd835', fontWeight: 700 }}>
               Contacto
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <PhoneIcon sx={{ fontSize: 20, color: '#fdd835' }} />
-                <Typography variant="body2" sx={{ color: '#b0b0b0' }}>
+            </Title>
+            <Stack gap="sm">
+              <Group gap="sm">
+                <IconPhone size={18} style={{ color: '#fdd835', flexShrink: 0 }} />
+                <Text size="sm" style={{ color: '#b0b0b0' }}>
                   {import.meta.env.VITE_CONTACT_PHONE_FORMATTED || '+54 911 1234-5678'}
-                </Typography>
-              </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <EmailIcon sx={{ fontSize: 20, color: '#fdd835' }} />
-                <Typography variant="body2" sx={{ color: '#b0b0b0' }}>
+                </Text>
+              </Group>
+              <Group gap="sm">
+                <IconMail size={18} style={{ color: '#fdd835', flexShrink: 0 }} />
+                <Text size="sm" style={{ color: '#b0b0b0' }}>
                   {import.meta.env.VITE_CONTACT_EMAIL || 'info@rsautoelevadores.com'}
-                </Typography>
-              </Box>
-              <Box 
-                component="a"
+                </Text>
+              </Group>
+              <Anchor
                 href={import.meta.env.VITE_GOOGLE_MAPS_SEARCH_URL || 'https://maps.google.com/?q=Ruta+8,+El+Jacaranda,+B1669+Pilar,+Buenos+Aires'}
                 target="_blank"
                 rel="noopener noreferrer"
-                sx={{ 
-                  display: 'flex', 
-                  alignItems: 'flex-start', 
-                  gap: 1.5,
-                  textDecoration: 'none',
-                  color: 'inherit',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    color: '#fdd835',
-                  }
-                }}
+                style={{ textDecoration: 'none', color: 'inherit' }}
               >
-                <LocationOnIcon sx={{ fontSize: 20, color: '#fdd835', mt: 0.2 }} />
-                <Box>
-                  <Typography variant="body2" sx={{ color: '#b0b0b0', lineHeight: 1.6 }}>
-                    {import.meta.env.VITE_ADDRESS_STREET || 'Ruta 8, El Jacaranda'}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: '#b0b0b0', lineHeight: 1.6 }}>
-                    {import.meta.env.VITE_ADDRESS_CITY || 'B1669 Pilar, Buenos Aires'}
-                  </Typography>
-                </Box>
-              </Box>
-            </Box>
-          </Grid>
-        </Grid>
+                <Group gap="sm" align="flex-start">
+                  <IconMapPin size={18} style={{ color: '#fdd835', flexShrink: 0, marginTop: 2 }} />
+                  <Stack gap={2}>
+                    <Text size="sm" style={{ color: '#b0b0b0', lineHeight: 1.6 }}>
+                      {import.meta.env.VITE_ADDRESS_STREET || 'Ruta 8, El Jacaranda'}
+                    </Text>
+                    <Text size="sm" style={{ color: '#b0b0b0', lineHeight: 1.6 }}>
+                      {import.meta.env.VITE_ADDRESS_CITY || 'B1669 Pilar, Buenos Aires'}
+                    </Text>
+                  </Stack>
+                </Group>
+              </Anchor>
+            </Stack>
+          </Stack>
+        </SimpleGrid>
 
-        <Divider sx={{ my: 3, backgroundColor: '#424242' }} />
+        <Divider my={32} color="#424242" />
 
-        <Typography variant="body2" align="center" sx={{ color: '#b0b0b0' }}>
-          © {currentYear} {import.meta.env.VITE_COMPANY_NAME || 'RS Autoelevadores'}. Todos los derechos reservados.
-        </Typography>
+        <Text size="sm" ta="center" style={{ color: '#b0b0b0' }}>
+          © {year} {import.meta.env.VITE_COMPANY_NAME || 'RS Autoelevadores'}. Todos los derechos reservados.
+        </Text>
       </Container>
     </Box>
   );

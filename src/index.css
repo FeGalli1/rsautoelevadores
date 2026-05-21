@@ -67,6 +67,57 @@ a:hover {
 }
 
 /* Skeleton loading states */
+@keyframes brandScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes waPulse {
+  0%   { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+  50%  { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.65); transform: scale(1.06); }
+  100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+}
+
+/* ─ Card hover effects ─ */
+.card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.card-lift:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.12); }
+
+.brand-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.brand-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #A0153E 0%, #C71F4E 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.brand-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); border-color: transparent !important; }
+.brand-card:hover::before { transform: scaleX(1); }
+
+.value-card { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
+.value-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(160,21,62,0.12); border-color: #A0153E !important; }
+
+.gallery-img { transition: transform 0.4s ease; }
+.gallery-box { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.gallery-box:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(0,0,0,0.18); }
+.gallery-box:hover .gallery-img { transform: scale(1.08); }
+
+.contact-card { transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; cursor: pointer; }
+.contact-card:hover { transform: translateY(-6px); box-shadow: 0 12px 28px rgba(160,21,62,0.15); background-color: #A0153E !important; color: white; }
+.contact-card:hover * { color: white !important; }
+
+.machine-img { transition: transform 0.5s ease; }
+.machine-card:hover .machine-img { transform: scale(1.08); }
+
+.service-icon { transition: transform 0.4s ease; }
+.service-card:hover .service-icon { transform: scale(1.1) rotate(5deg); }
+
 @keyframes shimmer {
   0% {
     background-position: -1000px 0;
