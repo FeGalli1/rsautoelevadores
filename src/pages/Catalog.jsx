@@ -111,6 +111,7 @@ const Catalog = () => {
               }
               value={search}
               onChange={(e) => handleSearch(e.currentTarget.value)}
+              onKeyDown={(e) => { if (e.key === 'Enter') e.preventDefault(); }}
               size="md"
               radius="md"
             />
@@ -173,7 +174,7 @@ const Catalog = () => {
         {/* Grid de productos */}
         {pageItems.length > 0 ? (
           <>
-            <SimpleGrid cols={{ base: 1, sm: 2, md: 3, lg: 4 }} spacing={{ base: 16, md: 24 }}>
+            <SimpleGrid cols={{ base: 2, sm: 2, md: 3, lg: 4 }} spacing={{ base: 16, md: 24 }}>
               {pageItems.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}

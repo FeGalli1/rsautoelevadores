@@ -29,7 +29,7 @@ export const homeSEO = {
     'servicio técnico autoelevadores',
   ],
   canonical: `${BASE_URL}/`,
-  image: `${BASE_URL}/og-home.jpg`,
+  image: `${BASE_URL}/images/logo-rs-autoelevadores-1.png`,
   ogType: 'website',
 };
 
@@ -52,7 +52,7 @@ export const machinesSEO = {
     'Pilar Buenos Aires',
   ],
   canonical: `${BASE_URL}/machines`,
-  image: `${BASE_URL}/og-machines.jpg`,
+  image: `${BASE_URL}/images/logo-rs-autoelevadores-1.png`,
   ogType: 'website',
 };
 
@@ -79,7 +79,7 @@ export const getMachineSEO = (machine) => {
       LOCATION,
     ],
     canonical: `${BASE_URL}/machines/${machine.id || machine.slug}`,
-    image: machine.image || `${BASE_URL}/og-machines.jpg`,
+    image: machine.image || `${BASE_URL}/images/logo-rs-autoelevadores-1.png`,
     ogType: 'product',
   };
 };
@@ -104,7 +104,7 @@ export const catalogSEO = {
     'Pilar Buenos Aires',
   ],
   canonical: `${BASE_URL}/catalog`,
-  image: `${BASE_URL}/og-catalog.jpg`,
+  image: `${BASE_URL}/images/logo-rs-autoelevadores-1.png`,
   ogType: 'website',
 };
 
@@ -130,7 +130,7 @@ export const getProductSEO = (product) => {
       LOCATION,
     ].filter(Boolean),
     canonical: `${BASE_URL}/catalog/${product.id || product.slug}`,
-    image: product.image || `${BASE_URL}/og-catalog.jpg`,
+    image: product.image || `${BASE_URL}/images/logo-rs-autoelevadores-1.png`,
     ogType: 'product',
   };
 };
@@ -152,7 +152,7 @@ export const servicesSEO = {
     'Pilar Buenos Aires',
   ],
   canonical: `${BASE_URL}/services`,
-  image: `${BASE_URL}/og-services.jpg`,
+  image: `${BASE_URL}/images/logo-rs-autoelevadores-1.png`,
   ogType: 'website',
 };
 
@@ -171,7 +171,7 @@ export const contactSEO = {
     'WhatsApp autoelevadores',
   ],
   canonical: `${BASE_URL}/contact`,
-  image: `${BASE_URL}/og-contact.jpg`,
+  image: `${BASE_URL}/images/logo-rs-autoelevadores-1.png`,
   ogType: 'website',
 };
 
@@ -192,7 +192,7 @@ export const aboutSEO = {
     'servicio integral',
   ],
   canonical: `${BASE_URL}/about`,
-  image: `${BASE_URL}/og-about.jpg`,
+  image: `${BASE_URL}/images/logo-rs-autoelevadores-1.png`,
   ogType: 'website',
 };
 

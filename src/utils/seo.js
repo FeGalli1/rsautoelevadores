@@ -11,7 +11,7 @@
 const DEFAULT_SEO = {
   siteName: 'RS Autoelevadores',
   siteUrl: 'https://rsautoelevadores.com',
-  defaultImage: 'https://rsautoelevadores.com/og-image.jpg',
+  defaultImage: 'https://rsautoelevadores.com/images/logo-rs-autoelevadores-1.png',
   locale: 'es_AR',
   twitterHandle: '@rsautoelevadores',
   businessLocation: 'Pilar, Buenos Aires',
@@ -175,7 +175,7 @@ export const schemas = {
     name: 'RS Autoelevadores',
     description: 'Alquiler de autoelevadores, mantenimiento profesional y venta de repuestos en Pilar, Buenos Aires.',
     url: DEFAULT_SEO.siteUrl,
-    logo: `${DEFAULT_SEO.siteUrl}/logo.png`,
+    logo: `${DEFAULT_SEO.siteUrl}/images/logo-rs-autoelevadores-1.png`,
     image: DEFAULT_SEO.defaultImage,
     telephone: import.meta.env.VITE_CONTACT_PHONE || '+54 911 1234-5678',
     email: import.meta.env.VITE_CONTACT_EMAIL || 'info@rsautoelevadores.com',

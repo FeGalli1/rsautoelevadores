@@ -29,6 +29,7 @@ const HeroSection = () => (
       <Text
         size="sm"
         fw={700}
+        className="hero-anim-1"
         style={{ letterSpacing: '3px', color: 'rgba(255,255,255,0.9)', marginBottom: 16, display: 'block', textTransform: 'uppercase' }}
       >
         TU SOCIO ESTRATÉGICO EN EQUIPAMIENTO INDUSTRIAL
@@ -36,6 +37,7 @@ const HeroSection = () => (
 
       <Title
         order={1}
+        className="hero-anim-2"
         style={{
           fontWeight: 900,
           fontSize: 'clamp(2rem, 5vw, 4.5rem)',
@@ -52,6 +54,7 @@ const HeroSection = () => (
       </Title>
 
       <Text
+        className="hero-anim-3"
         style={{
           marginBottom: 48,
           fontSize: 'clamp(1rem, 2vw, 1.35rem)',
@@ -65,7 +68,7 @@ const HeroSection = () => (
         Más de 15 años brindando confianza y respaldo técnico a la industria nacional.
       </Text>
 
-      <Group gap="md" wrap="wrap">
+      <Group gap="md" wrap="wrap" className="hero-anim-4">
         <Button
           component={Link}
           to="/catalog"
@@ -80,7 +83,7 @@ const HeroSection = () => (
           onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-3px)'; }}
           onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; }}
         >
-          Nuestros Servicios
+          Nuestro Catálogo
         </Button>
 
         <Button

@@ -139,6 +139,68 @@ a:hover {
   background-size: 1000px 100%;
 }
 
+/* ─ Scroll Reveal Animations ─ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+/* Staggered delays */
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+.d4 { transition-delay: 0.32s; }
+.d5 { transition-delay: 0.40s; }
+.d6 { transition-delay: 0.48s; }
+
+/* ─ Hero Entrance Animations ─ */
+.hero-anim-1 { animation: fadeInUp 0.7s ease-out 0.10s both; }
+.hero-anim-2 { animation: fadeInUp 0.8s ease-out 0.30s both; }
+.hero-anim-3 { animation: fadeInUp 0.7s ease-out 0.55s both; }
+.hero-anim-4 { animation: fadeInUp 0.7s ease-out 0.75s both; }
+
+/* ─ Float Animation ─ */
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+.float-anim { animation: floatUpDown 5s ease-in-out infinite; }
+
+/* ─ Catalog Preview image hover ─ */
+.catalog-preview-img { transition: transform 0.4s ease; }
+.card-lift:hover .catalog-preview-img { transform: scale(1.07); }
+
+/* ─ Decorative pulse ring ─ */
+@keyframes pulseRing {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(160, 21, 62, 0.25); }
+  70% { transform: scale(1); box-shadow: 0 0 0 14px rgba(160, 21, 62, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(160, 21, 62, 0); }
+}
+.pulse-ring { animation: pulseRing 2.4s ease-out infinite; }
+
 /* Scrollbar personalizado */
 ::-webkit-scrollbar {
   width: 10px;

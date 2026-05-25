@@ -13,7 +13,20 @@
       "Bash(Format-Table -Property FullName)",
       "Bash(node scripts/parse-catalog.mjs)",
       "Bash(npm run *)",
-      "WebFetch(domain:localhost)"
+      "WebFetch(domain:localhost)",
+      "Read(//tmp/**)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Galli\\\\progra\\\\Proyectos\\\\FedeBarraza\\\\rs-autoelevadores\" -Force)",
+      "WebSearch",
+      "WebFetch(domain:seeklogo.com)",
+      "WebFetch(domain:www.tailift.com)",
+      "WebFetch(domain:brandfetch.com)",
+      "WebFetch(domain:brandlogos.net)",
+      "WebFetch(domain:iconape.com)",
+      "WebFetch(domain:upload.wikimedia.org)",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "WebFetch(domain:www.tailift.com.tw)",
+      "PowerShell(Invoke-WebRequest -Uri \"https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_Heli_forklift.jpg\" -OutFile \"c:\\\\Users\\\\Galli\\\\progra\\\\Proyectos\\\\FedeBarraza\\\\rs-autoelevadores\\\\public\\\\images\\\\logos\\\\heli.jpg\" -UseBasicParsing)",
+      "PowerShell(\"Downloaded\")"
     ]
   }
 }

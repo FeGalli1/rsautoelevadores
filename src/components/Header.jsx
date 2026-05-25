@@ -49,23 +49,24 @@ const Header = () => {
           transition: 'box-shadow 0.3s ease',
         }}
       >
-        <Container size="xl" py={scrolled ? 8 : 12} style={{ transition: 'padding 0.3s ease' }}>
+        <Container size="xl" py={scrolled ? 12 : 20} style={{ transition: 'padding 0.3s ease' }}>
           <Box style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
             {/* Logo */}
             <Anchor
               component={Link}
               to="/"
-              style={{
-                color: '#A0153E',
-                fontWeight: 900,
-                fontSize: scrolled ? '1.2rem' : '1.45rem',
-                textDecoration: 'none',
-                letterSpacing: '-0.5px',
-                marginRight: 'auto',
-                transition: 'font-size 0.3s ease',
-              }}
+              style={{ marginRight: 'auto', textDecoration: 'none', lineHeight: 0 }}
             >
-              RS Autoelevadores
+              <img
+                src="/images/logo-rs-autoelevadores-1.png"
+                alt="RS Autoelevadores"
+                style={{
+                  height: scrolled ? 58 : 72,
+                  width: 'auto',
+                  display: 'block',
+                  transition: 'height 0.3s ease',
+                }}
+              />
             </Anchor>
 
             {/* Desktop nav */}
@@ -106,7 +107,7 @@ const Header = () => {
       </Box>
 
       {/* Spacer */}
-      <Box style={{ height: scrolled ? 58 : 72, transition: 'height 0.3s ease' }} />
+      <Box style={{ height: scrolled ? 84 : 114, transition: 'height 0.3s ease' }} />
 
       {/* Mobile drawer */}
       <Drawer
@@ -115,9 +116,11 @@ const Header = () => {
         position="right"
         size="xs"
         title={
-          <span style={{ color: '#A0153E', fontWeight: 900, fontSize: '1.2rem' }}>
-            RS Autoelevadores
-          </span>
+          <img
+            src="/images/logo-rs-autoelevadores-1.png"
+            alt="RS Autoelevadores"
+            style={{ height: 36, width: 'auto' }}
+          />
         }
         overlayProps={{ backgroundOpacity: 0.4 }}
       >

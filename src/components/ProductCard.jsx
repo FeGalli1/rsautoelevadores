@@ -23,7 +23,7 @@ const ProductCard = ({ product }) => {
             {product.name}
           </Text>
         }
-        size="lg"
+        size="xl"
         radius="lg"
         padding="lg"
       >

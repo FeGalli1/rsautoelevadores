@@ -1,6 +1,7 @@
 import HeroSection from '../components/HeroSection';
 import AboutSection from '../components/AboutSection';
 import FeaturedMachines from '../components/FeaturedMachines';
+import CatalogPreview from '../components/CatalogPreview';
 import BrandsSection from '../components/BrandsSection';
 import CTASection from '../components/CTASection';
 import { useSEOWithOrganization } from '../hooks/useSEO';
@@ -14,6 +15,7 @@ const Home = () => {
       <HeroSection />
       <AboutSection />
       <FeaturedMachines />
+      <CatalogPreview />
       <BrandsSection />
       <CTASection />
     </>
