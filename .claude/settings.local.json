@@ -26,7 +26,11 @@
       "WebFetch(domain:commons.wikimedia.org)",
       "WebFetch(domain:www.tailift.com.tw)",
       "PowerShell(Invoke-WebRequest -Uri \"https://upload.wikimedia.org/wikipedia/commons/a/a2/Logo_Heli_forklift.jpg\" -OutFile \"c:\\\\Users\\\\Galli\\\\progra\\\\Proyectos\\\\FedeBarraza\\\\rs-autoelevadores\\\\public\\\\images\\\\logos\\\\heli.jpg\" -UseBasicParsing)",
-      "PowerShell(\"Downloaded\")"
+      "PowerShell(\"Downloaded\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
+      "Bash(node -e ' *)",
+      "Bash(npx playwright@latest --version)",
+      "Bash(del carousel-check.png carousel-machines.png carousel-machines2.png)"
     ]
   }
 }

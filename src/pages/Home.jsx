@@ -14,9 +14,9 @@ const Home = () => {
     <>
       <HeroSection />
       <AboutSection />
+      <BrandsSection />
       <FeaturedMachines />
       <CatalogPreview />
-      <BrandsSection />
       <CTASection />
     </>
   );

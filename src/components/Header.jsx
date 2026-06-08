@@ -6,7 +6,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 const menuItems = [
   { text: 'Inicio',    path: '/' },
-  { text: 'Máquinas', path: '/machines' },
   { text: 'Catálogo', path: '/catalog' },
   { text: 'Nosotros', path: '/about' },
   { text: 'Contacto', path: '/contact' },

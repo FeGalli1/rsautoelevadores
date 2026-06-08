@@ -1,18 +1,107 @@
-import { Box, Container, Title, Text, SimpleGrid, Card, Button, Stack, Group } from '@mantine/core';
-import { Link } from 'react-router-dom';
+import { useRef, useState } from 'react';
+import { Carousel } from '@mantine/carousel';
+import '@mantine/carousel/styles.css';
+import Autoplay from 'embla-carousel-autoplay';
+import { Box, Container, Title, Text, Stack, Card, Badge, Button, Group } from '@mantine/core';
 import { IconArrowRight } from '@tabler/icons-react';
+import MachineDetailModal from './MachineDetailModal';
+import machines from '../data/machines';
 import useScrollReveal from '../hooks/useScrollReveal';
 
-const machines = [
-  { id: 1, name: 'Autoelevador Diésel 3.5 Ton', image: 'https://images.unsplash.com/photo-1615840287214-7ff58936c4cf?w=500&h=400&fit=crop', description: 'Ideal para trabajos pesados en exteriores' },
-  { id: 2, name: 'Autoelevador Eléctrico 2.5 Ton', image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=500&h=400&fit=crop', description: 'Perfecto para uso en interiores y ambientes cerrados' },
-  { id: 3, name: 'Apilador Eléctrico', image: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=500&h=400&fit=crop', description: 'Solución eficiente para almacenes y depósitos' },
-];
+const MachineSlideCard = ({ machine }) => {
+  const [opened, setOpened] = useState(false);
+
+  return (
+    <>
+      <Card
+        radius="xl"
+        withBorder
+        style={{
+          border: '1px solid #e8e8e8',
+          overflow: 'hidden',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        <Card.Section style={{ position: 'relative', height: 210, overflow: 'hidden', flexShrink: 0 }}>
+          <img
+            src={machine.image}
+            alt={machine.name}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+          />
+          <Box
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: '50%',
+              background: 'linear-gradient(to top, rgba(0,0,0,0.45), transparent)',
+            }}
+          />
+          {machine.brand && (
+            <Badge
+              style={{
+                position: 'absolute',
+                top: 12,
+                left: 12,
+                backgroundColor: 'white',
+                color: '#2B2B2B',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+              }}
+              radius="sm"
+            >
+              {machine.brand}
+            </Badge>
+          )}
+        </Card.Section>
+
+        <Stack gap="sm" p="lg" style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+          <Group gap={6}>
+            {machine.capacity && (
+              <Badge color="brand" radius="sm" size="sm">
+                {machine.capacity}
+              </Badge>
+            )}
+            {machine.fuelType && (
+              <Badge variant="outline" color="brand" radius="sm" size="sm">
+                {machine.fuelType}
+              </Badge>
+            )}
+          </Group>
+
+          <Title order={4} fw={700} fz="1.05rem" lineClamp={2}>
+            {machine.name}
+          </Title>
+
+          <Text size="sm" c="dimmed" lh={1.6} lineClamp={2} style={{ flexGrow: 1 }}>
+            {machine.description}
+          </Text>
+
+          <Button
+            variant="outline"
+            color="brand"
+            size="sm"
+            rightSection={<IconArrowRight size={14} />}
+            onClick={() => setOpened(true)}
+            mt="xs"
+            style={{ alignSelf: 'flex-start' }}
+          >
+            Ver detalles
+          </Button>
+        </Stack>
+      </Card>
+
+      <MachineDetailModal opened={opened} onClose={() => setOpened(false)} machine={machine} />
+    </>
+  );
+};
 
 const FeaturedMachines = () => {
+  const autoplay = useRef(Autoplay({ delay: 3500, stopOnInteraction: false }));
   const [headerRef, headerVisible] = useScrollReveal(0.1);
-  const [gridRef, gridVisible] = useScrollReveal(0.05);
-  const [ctaRef, ctaVisible] = useScrollReveal(0.2);
+  const [carouselRef, carouselVisible] = useScrollReveal(0.05);
 
   return (
     <Box component="section" bg="gray.1" py={{ base: 60, md: 96 }}>
@@ -26,58 +115,44 @@ const FeaturedMachines = () => {
             className={`reveal ${headerVisible ? 'visible' : ''}`}
           >
             <Text size="sm" fw={700} c="brand" style={{ letterSpacing: '2px', textTransform: 'uppercase' }}>
-              EQUIPOS DESTACADOS
+              NUESTRAS MÁQUINAS
             </Text>
             <Title order={2} fz={{ base: '1.75rem', sm: '2.2rem', md: '2.5rem' }}>
-              Máquinas Destacadas
+              Algunas de Nuestras Máquinas
             </Title>
             <Text c="dimmed" size="lg" maw={680} lh={1.7}>
-              Conocé algunos de nuestros equipos disponibles para alquiler
+              Equipos disponibles de 1.5 a 7 toneladas
             </Text>
           </Stack>
         </div>
 
-        <div ref={gridRef}>
-          <SimpleGrid cols={{ base: 1, md: 3 }} spacing={{ base: 20, md: 32 }} mb={48}>
-            {machines.map((m, i) => (
-              <div
-                key={m.id}
-                className={`reveal ${gridVisible ? 'visible' : ''}`}
-                style={{ transitionDelay: `${i * 0.12}s` }}
-              >
-                <Card radius="xl" withBorder className="card-lift machine-card" style={{ border: '1px solid #e0e0e0' }}>
-                  <Card.Section>
-                    <Box style={{ height: 220, overflow: 'hidden' }}>
-                      <img
-                        src={m.image}
-                        alt={m.name}
-                        className="machine-img"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-                      />
-                    </Box>
-                  </Card.Section>
-                  <Stack gap="xs" pt="md">
-                    <Title order={4} fw={700} fz="1.1rem">{m.name}</Title>
-                    <Text size="sm" c="dimmed" lh={1.6}>{m.description}</Text>
-                  </Stack>
-                </Card>
-              </div>
+        <div ref={carouselRef} className={`reveal ${carouselVisible ? 'visible' : ''}`}>
+          <Carousel
+            plugins={[autoplay.current]}
+            onMouseEnter={autoplay.current.stop}
+            onMouseLeave={autoplay.current.reset}
+            slideSize={{ base: '100%', sm: '50%', md: '33.333%' }}
+            slideGap={{ base: 'md', md: 'lg' }}
+            loop
+            withIndicators
+            align="start"
+            styles={{
+              indicator: {
+                width: 8,
+                height: 8,
+                backgroundColor: '#ccc',
+                '&[data-active]': { backgroundColor: '#A0153E', width: 20 },
+              },
+              indicators: { bottom: -36 },
+              controls: { top: '45%' },
+            }}
+          >
+            {machines.map((m) => (
+              <Carousel.Slide key={m.id} style={{ paddingBottom: 8 }}>
+                <MachineSlideCard machine={m} />
+              </Carousel.Slide>
             ))}
-          </SimpleGrid>
-        </div>
-
-        <div ref={ctaRef}>
-          <Group justify="center" className={`reveal ${ctaVisible ? 'visible' : ''}`}>
-            <Button
-              component={Link}
-              to="/machines"
-              size="lg"
-              color="brand"
-              rightSection={<IconArrowRight size={18} />}
-            >
-              Ver Todas las Máquinas
-            </Button>
-          </Group>
+          </Carousel>
         </div>
       </Container>
     </Box>

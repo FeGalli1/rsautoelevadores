@@ -89,8 +89,8 @@ const CatalogPreview = () => {
         {/* Stats */}
         <div ref={statsRef}>
           <SimpleGrid
-            cols={{ base: 3 }}
-            spacing={{ base: 16, md: 48 }}
+            cols={{ base: 2 }}
+            spacing={{ base: 16, md: 80 }}
             mb={{ base: 48, md: 72 }}
             style={{
               padding: '28px 0',
@@ -98,9 +98,8 @@ const CatalogPreview = () => {
               borderBottom: '1px solid #f0f0f0',
             }}
           >
-            <StatItem value={catalog.length} suffix="+" label="repuestos disponibles" isVisible={statsVisible} delay="0s" />
-            <StatItem value={6} suffix="" label="marcas cubiertas" isVisible={statsVisible} delay="0.12s" />
-            <StatItem value={15} suffix="+" label="años de experiencia" isVisible={statsVisible} delay="0.24s" />
+            <StatItem value={1500} suffix="+" label="repuestos disponibles" isVisible={statsVisible} delay="0s" />
+            <StatItem value={15} suffix="+" label="años de experiencia" isVisible={statsVisible} delay="0.12s" />
           </SimpleGrid>
         </div>
 

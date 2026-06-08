@@ -115,8 +115,6 @@ a:hover {
 .machine-img { transition: transform 0.5s ease; }
 .machine-card:hover .machine-img { transform: scale(1.08); }
 
-.service-icon { transition: transform 0.4s ease; }
-.service-card:hover .service-icon { transform: scale(1.1) rotate(5deg); }
 
 @keyframes shimmer {
   0% {

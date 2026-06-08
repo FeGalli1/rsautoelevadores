@@ -5,7 +5,7 @@ const ServiceCard = ({ icon, title, description }) => (
     withBorder
     p="xl"
     radius="xl"
-    className="brand-card service-card"
+    className="service-card"
     style={{ height: '100%', border: '1.5px solid #eeeeee' }}
   >
     <Stack gap="md" align="center" ta="center">
