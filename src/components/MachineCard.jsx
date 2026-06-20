@@ -42,16 +42,15 @@ const MachineCard = ({ machine }) => {
           <Title order={4} fw={700} fz="1.1rem">
             {machine.name}
           </Title>
-          <Text size="sm" c="dimmed" lh={1.65} style={{ flexGrow: 1 }}>
-            {machine.description}
-          </Text>
 
-          {machine.features?.slice(0, 3).map((f, i) => (
-            <Box key={i} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <Box style={{ width: 4, height: 4, borderRadius: '50%', backgroundColor: '#A0153E', flexShrink: 0 }} />
-              <Text size="xs" c="dimmed">{f}</Text>
-            </Box>
-          ))}
+          <Box style={{ flexGrow: 1 }}>
+            {machine.features?.slice(0, 3).map((f, i) => (
+              <Box key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: i === 0 ? 0 : 4 }}>
+                <Box style={{ width: 4, height: 4, borderRadius: '50%', backgroundColor: '#A0153E', flexShrink: 0 }} />
+                <Text size="xs" c="dimmed">{f}</Text>
+              </Box>
+            ))}
+          </Box>
 
           <Button
             variant="outline"

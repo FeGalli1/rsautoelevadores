@@ -51,7 +51,6 @@ const MachineDetailModal = ({ opened, onClose, machine }) => {
             {machine.capacity && <Badge color="brand" radius="sm">{machine.capacity}</Badge>}
             {machine.fuelType && <Badge variant="outline" color="brand" radius="sm">{machine.fuelType}</Badge>}
           </Group>
-          <Text c="dimmed" lh={1.8} size="sm">{machine.description}</Text>
         </Box>
 
         {machine.features?.length > 0 && (

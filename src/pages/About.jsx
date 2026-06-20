@@ -1,9 +1,10 @@
-import { Box, Container, Title, Text, Button, Paper, SimpleGrid, Grid, Stack, Group, Divider, ThemeIcon } from '@mantine/core';
+import { Box, Container, Title, Text, Button, Paper, SimpleGrid, Grid, Stack, Group, ThemeIcon } from '@mantine/core';
 import { useNavigate } from 'react-router-dom';
 import { IconHeartHandshake, IconTool, IconPackage, IconShieldCheck, IconBadge, IconGauge, IconHeadset, IconBrandWhatsapp } from '@tabler/icons-react';
 import { useSEOWithOrganization } from '../hooks/useSEO';
 import { aboutSEO } from '../config/seoConfig';
 import { schemas } from '../utils/seo';
+import BrandsSection from '../components/BrandsSection';
 
 const services = [
   { icon: <IconHeartHandshake size={40} />, title: 'Alquiler de Autoelevadores', description: 'Unidades diésel y eléctricas de diversas capacidades. Planes flexibles de corto, mediano y largo plazo diseñados para adaptarse al volumen de su operación.' },
@@ -23,16 +24,6 @@ const stats = [
   { value: '+500', label: 'Clientes atendidos' },
   { value: '+10', label: 'Marcas líderes' },
   { value: '24/7', label: 'Soporte técnico' },
-];
-
-const brands = [
-  { name: 'Toyota',      logo: '/images/logos/toyota.svg' },
-  { name: 'Nissan',      logo: '/images/logos/nissan.png' },
-  { name: 'Yale',        logo: '/images/logos/yale.svg' },
-  { name: 'Caterpillar', logo: '/images/logos/caterpillar.svg' },
-  { name: 'Hyster',      logo: '/images/logos/Hyster.png' },
-  { name: 'Crown',       logo: '/images/logos/crown.svg' },
-  { name: 'Komatsu',     logo: '/images/logos/komatsu.svg' },
 ];
 
 const gallery = [
@@ -110,32 +101,6 @@ const About = () => {
                 <Text size="md" c="dimmed" lh={1.85}>
                   No solo reparamos equipos; <strong style={{ color: '#2B2B2B' }}>maximizamos la operatividad de su flota</strong>. Somos <strong style={{ color: '#A0153E' }}>importadores directos</strong> de repuestos para las marcas líderes del mercado.
                 </Text>
-                <Divider />
-                {/* Brand logos */}
-                <Group gap="sm" wrap="wrap">
-                  {brands.map((b) => (
-                    <Box
-                      key={b.name}
-                      style={{ width: 76, height: 46, display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: 8, backgroundColor: '#f8f8f8', border: '1px solid #e0e0e0', padding: '6px 10px', transition: 'all 0.2s ease', cursor: 'default' }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = '#A0153E';
-                        e.currentTarget.style.backgroundColor = 'white';
-                        e.currentTarget.style.boxShadow = '0 4px 12px rgba(160,21,62,0.1)';
-                        const img = e.currentTarget.querySelector('img');
-                        if (img) { img.style.filter = 'grayscale(0%)'; img.style.opacity = '1'; }
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = '#e0e0e0';
-                        e.currentTarget.style.backgroundColor = '#f8f8f8';
-                        e.currentTarget.style.boxShadow = 'none';
-                        const img = e.currentTarget.querySelector('img');
-                        if (img) { img.style.filter = 'grayscale(100%)'; img.style.opacity = '0.7'; }
-                      }}
-                    >
-                      <img src={b.logo} alt={b.name} style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain', filter: 'grayscale(100%)', opacity: 0.7, transition: 'all 0.2s ease' }} />
-                    </Box>
-                  ))}
-                </Group>
               </Stack>
             </Grid.Col>
 
@@ -148,6 +113,9 @@ const About = () => {
           </Grid>
         </Container>
       </Box>
+
+      {/* ── MARCAS (carrusel infinito) ── */}
+      <BrandsSection />
 
       {/* ── QUÉ HACEMOS ── */}
       <Box bg="gray.0" py={{ base: 72, md: 104 }}>

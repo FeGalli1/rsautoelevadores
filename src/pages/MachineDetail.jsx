@@ -4,20 +4,7 @@ import { IconArrowLeft, IconBrandWhatsapp } from '@tabler/icons-react';
 import { useSEOWithOrganization } from '../hooks/useSEO';
 import { getMachineSEO } from '../config/seoConfig';
 import { schemas } from '../utils/seo';
-
-const machines = [
-  {
-    id: 1,
-    name: 'Autoelevador Diésel',
-    brand: 'Toyota',
-    capacity: '3.5 Ton',
-    fuelType: 'Diesel',
-    image: 'https://images.unsplash.com/photo-1615840287214-7ff58936c4cf?w=800&h=600&fit=crop',
-    description: 'Autoelevador diésel de alto rendimiento Toyota, ideal para trabajos pesados en exteriores. Motor eficiente con bajo consumo de combustible.',
-    features: ['Capacidad de carga: 3500 kg', 'Altura máxima de elevación: 4.5 m', 'Motor diésel eficiente Toyota', 'Neumáticos todo terreno', 'Cabina con protección ROPS/FOPS', 'Transmisión automática'],
-    specs: { modelo: '8FD35', motor: 'Diésel 4 cilindros', potencia: '68 HP', peso: '5200 kg', longitud: '3.8 m', ancho: '1.2 m' },
-  },
-];
+import machines from '../data/machines';
 
 const MachineDetail = () => {
   const { id } = useParams();
@@ -63,7 +50,6 @@ const MachineDetail = () => {
             <Badge color="brand" size="lg" radius="sm">{machine.fuelType}</Badge>
             <Title order={1} fz={{ base: '2rem', md: '2.5rem' }} fw={900} lh={1.2}>{machine.name}</Title>
             <Text size="xl" c="dimmed" fw={500}>{machine.brand} — {machine.capacity}</Text>
-            <Text c="dimmed" lh={1.8}>{machine.description}</Text>
 
             <Divider />
 

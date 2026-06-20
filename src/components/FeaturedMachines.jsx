@@ -71,13 +71,9 @@ const MachineSlideCard = ({ machine }) => {
             )}
           </Group>
 
-          <Title order={4} fw={700} fz="1.05rem" lineClamp={2}>
+          <Title order={4} fw={700} fz="1.05rem" lineClamp={2} style={{ flexGrow: 1 }}>
             {machine.name}
           </Title>
-
-          <Text size="sm" c="dimmed" lh={1.6} lineClamp={2} style={{ flexGrow: 1 }}>
-            {machine.description}
-          </Text>
 
           <Button
             variant="outline"
